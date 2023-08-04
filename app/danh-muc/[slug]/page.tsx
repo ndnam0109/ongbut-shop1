@@ -37,23 +37,29 @@ export default function CategoryPage({params}: { params: { slug: string } }){
                         <h4 className={`text-[16px] font-semibold`}>Danh mục</h4>
                         <ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">
                             <Link href={`/danh-muc/kinh`}>
-                                <li className="w-full py-2 px-1 rounded-xl flex gap-x-2 items-center hover:bg-gray-100">
-                                    <img className={`w-8 h-8`}
-                                         src="https://salt.tikicdn.com/cache/100x100/ts/category/ca/53/64/49c6189a0e1c1bf7cb91b01ff6d3fe43.png.webp"
-                                         alt=""/>
+                                <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                    <div className={`rounded-xl p-1 bg-white`}>
+                                        <img className={`w-8 h-8`}
+                                             src="https://salt.tikicdn.com/cache/100x100/ts/category/ca/53/64/49c6189a0e1c1bf7cb91b01ff6d3fe43.png.webp"
+                                             alt=""/>
+                                    </div>
                                     <span>Kính mắt</span>
                                 </li>
                             </Link>
-                            <li className="w-full py-2 px-1 rounded-xl flex gap-x-2 items-center hover:bg-gray-100">
-                                <img className={`w-8 h-8`}
-                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/ed/20/60/afa9b3b474bf7ad70f10dd6443211d5f.png.webp"
-                                     alt=""/>
+                            <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                <div className={`rounded-xl p-1 bg-white`}>
+                                    <img className={`w-8 h-8`}
+                                         src="https://salt.tikicdn.com/cache/100x100/ts/category/ed/20/60/afa9b3b474bf7ad70f10dd6443211d5f.png.webp"
+                                         alt=""/>
+                                </div>
                                 <span>Sách vở</span>
                             </li>
-                            <li className="w-full py-2 px-1 rounded-xl flex gap-x-2 items-center hover:bg-gray-100">
-                                <img className={`w-8 h-8`}
-                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png.webp"
-                                     alt=""/>
+                            <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                <div className={`rounded-xl p-1 bg-white`}>
+                                    <img className={`w-8 h-8`}
+                                         src="https://salt.tikicdn.com/cache/100x100/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png.webp"
+                                         alt=""/>
+                                </div>
                                 <span>Máy tính bảng</span>
                             </li>
                         </ul>

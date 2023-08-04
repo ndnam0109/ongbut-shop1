@@ -10,6 +10,7 @@ import {ProductQuantity} from "@/components/product/ProductQuantity";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {CardProductItem} from "@/components/cart/ProductInCart";
+import {useShopContext} from "@/lib/providers/shop-provider";
 
 
 export default function CartModal() {
@@ -23,11 +24,20 @@ export default function CartModal() {
     console.log(totalAmount)
     console.log(cartProducts)
     console.log(totalQty)
+    const {customer, shopCode, shop, setOpenLoginDialog} = useShopContext()
     const cart = {}
     const [isOpen, setIsOpen] = useState(false);
     const openCart = () => setIsOpen(true);
     const closeCart = () => setIsOpen(false);
     const router = useRouter()
+
+    const handlePayment = () => {
+      if (customer){
+          router.push(`/thanh-toan`)
+      } else {
+          setOpenLoginDialog(true)
+      }
+    }
 
     return (
         <>
@@ -118,13 +128,11 @@ export default function CartModal() {
                                     {/*        />*/}
                                     {/*    </div>*/}
                                     {/*</div>*/}
-                                    <Link href={'/thanh-toan'}>
                                         <button onClick={() => setIsOpen(false)}
                                             className="block w-full rounded bg-green-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                                         >
                                             Thanh toán -   {parseNumber(totalAmount, true)}
                                         </button>
-                                    </Link>
                                 </div>
                             )}
                         </Dialog.Panel>

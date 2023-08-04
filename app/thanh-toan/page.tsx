@@ -1,10 +1,12 @@
 'use client'
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { CheckCircleIcon, TrashIcon} from "@heroicons/react/20/solid";
+import {CheckCircleIcon, ScaleIcon, TrashIcon, TruckIcon} from "@heroicons/react/20/solid";
 import {ProductQuantity} from "@/components/product/ProductQuantity";
 import {useCart} from "@/lib/providers/cart-provider";
 import {parseNumber} from "@/lib/helpers/parser";
+import CustomDropdown from "@/lib/form/CustomDropdown";
+import {PaymentDeliveryInfo} from "@/components/payment/payment-delivery-info";
 
 const deliveryMethods = [
     { id: 1, title: 'COD',image:'https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/ship-cod-la-gi-0.jpg', turnaround: '4–10 business days', price: '$5.00' },
@@ -17,7 +19,7 @@ const paymentMethods = [
 ]
 
 // @ts-ignore
-function classNames(...classes) {
+function classNames(... classes) {
     return classes.filter(Boolean).join(' ')
 }
 
@@ -75,13 +77,7 @@ export default function Example() {
                                         Tỉnh/Thành phố
                                     </label>
                                     <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            name="city"
-                                            id="city"
-                                            autoComplete="address-level2"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
+                                       <CustomDropdown list={[]}/>
                                     </div>
                                 </div>
                                 <div>
@@ -89,13 +85,7 @@ export default function Example() {
                                         Quận/Huyện
                                     </label>
                                     <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            name="region"
-                                            id="region"
-                                            autoComplete="address-level1"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
+                                        <CustomDropdown list={[]}/>
                                     </div>
                                 </div>
 
@@ -104,13 +94,7 @@ export default function Example() {
                                         Xã/Phường
                                     </label>
                                     <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            name="postal-code"
-                                            id="postal-code"
-                                            autoComplete="postal-code"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
+                                        <CustomDropdown list={[]}/>
                                     </div>
                                 </div>
                                 <div>
@@ -256,6 +240,9 @@ export default function Example() {
                                     </li>
                                 ))}
                             </ul>
+                            <dl className="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
+                            <PaymentDeliveryInfo ></PaymentDeliveryInfo>
+                            </dl>
                             <dl className="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                                 <div className="flex items-center justify-between">
                                     <dt className="text-sm">Tạm tính</dt>

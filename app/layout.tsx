@@ -7,6 +7,8 @@ import Header from "@/components/layout/Header";
 import {CartProvider} from "@/lib/providers/cart-provider";
 import Footer from "@/components/layout/Footer";
 import BottomNavigationMobile from "@/components/layout/BottomNavigationMobile";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({subsets: ['latin']})
 
@@ -24,7 +26,19 @@ export default function RootLayout({
         <html lang="en">
         <body className={inter.className}>
         <AuthProvider>
-            <ShopProvider>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            <ShopProvider code={'OngButShop'}>
                 <CartProvider>
                     <Header/>
                     {children}
@@ -32,6 +46,7 @@ export default function RootLayout({
                     <BottomNavigationMobile />
                 </CartProvider>
             </ShopProvider>
+            <ToastContainer />
         </AuthProvider></body>
         </html>
     )

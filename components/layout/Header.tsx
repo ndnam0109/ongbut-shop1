@@ -13,7 +13,7 @@ export default function Header(){
                     <Link className={`hidden md:block`} href={'/'}>
                         <div className={`text-white text-2xl font-semibold`}>TAKA</div>
                     </Link>
-                    <form className={`w-2/3 md:w-1/2 grow`}>
+                    <form className={`w-2/3 md:w-1/2 grow lg:grow-0`}>
                         <div className="flex">
                             <div className="relative w-full">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

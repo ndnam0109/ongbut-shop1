@@ -14,6 +14,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper'
 import {ShopContext, useShopContext} from "@/lib/providers/shop-provider";
+
 const categoriesConst = [
     {
         name: 'New Arrivals',
@@ -35,8 +36,9 @@ const categoriesConst = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-05.jpg',
     },
-    { name: 'Sale', href: '#', imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-03.jpg' },
+    {name: 'Sale', href: '#', imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-category-03.jpg'},
 ]
+
 
 export default function Home() {
     SwiperCore.use([Autoplay])
@@ -54,6 +56,32 @@ export default function Home() {
                                 <div className={`p-4 bg-white rounded-xl border-gray-300`}>
                                     <h4 className={`text-[16px] font-semibold`}>Danh mục</h4>
                                     <ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">
+                                        <Link href={`/danh-muc/kinh`}>
+                                            <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                                <div className={`rounded-xl p-1 bg-white`}>
+                                                    <img className={`w-8 h-8`}
+                                                         src="https://salt.tikicdn.com/cache/100x100/ts/category/ca/53/64/49c6189a0e1c1bf7cb91b01ff6d3fe43.png.webp"
+                                                         alt=""/>
+                                                </div>
+                                                <span>Kính mắt</span>
+                                            </li>
+                                        </Link>
+                                        <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                            <div className={`rounded-xl p-1 bg-white`}>
+                                                <img className={`w-8 h-8`}
+                                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/ed/20/60/afa9b3b474bf7ad70f10dd6443211d5f.png.webp"
+                                                     alt=""/>
+                                            </div>
+                                            <span>Sách vở</span>
+                                        </li>
+                                        <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
+                                            <div className={`rounded-xl p-1 bg-white`}>
+                                                <img className={`w-8 h-8`}
+                                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png.webp"
+                                                     alt=""/>
+                                            </div>
+                                            <span>Máy tính bảng</span>
+                                        </li>
                                         {categories?.map((x, index) => (
                                             <div key={index}>
                                                 <Link href={`/danh-muc/${x.id}`}>
@@ -130,23 +158,27 @@ export default function Home() {
                                         <div className={`hidden md:block col-span-1 flex flex-col gap-y-4`}>
                                             <img
                                                 src="https://salt.tikicdn.com/cache/w750/ts/tikimsp/30/4f/e7/3fd44f47d60e8a45fbaa089f011fb396.png.webp"
-                                                className={`rounded-xl h-[250px]`} alt=""/>
+                                                className={`rounded-xl h-[250px] w-full`} alt=""/>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="p-4 rounded mt-4 bg-white">
                                     <div className=" xl:max-w-7xl xl:mx-auto ">
                                         <div className="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between ">
-                                            <h2 className="text-lg font-semibold tracking-tight text-gray-900">Danh mục nổi bật</h2>
-                                            <a href="#" className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">
+                                            <h2 className="text-lg font-semibold tracking-tight text-gray-900">Danh mục
+                                                nổi bật</h2>
+                                            <a href="#"
+                                               className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">
                                                 Chi tiết<span aria-hidden="true"> &rarr;</span>
                                             </a>
                                         </div>
 
                                         <div className="mt-4  flow-root">
                                             <div className="-my-2">
-                                                <div className="box-content py-2 relative h-40 overflow-x-auto xl:overflow-visible">
-                                                    <div className="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">
+                                                <div
+                                                    className="box-content py-2 relative h-40 overflow-x-auto xl:overflow-visible">
+                                                    <div
+                                                        className="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">
                                                         {categoriesConst.map((category) => (
                                                             <a
                                                                 key={category.name}
@@ -154,13 +186,14 @@ export default function Home() {
                                                                 className="relative w-56 h-40 rounded-lg p-6 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto"
                                                             >
                     <span aria-hidden="true" className="absolute inset-0">
-                      <img src={category.imageSrc} alt="" className="w-full h-full object-center object-contain" />
+                      <img src={category.imageSrc} alt="" className="w-full h-full object-center object-contain"/>
                     </span>
                                                                 <span
                                                                     aria-hidden="true"
                                                                     className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
                                                                 />
-                                                                <span className="relative mt-auto text-center text-xl font-bold text-white">{category.name}</span>
+                                                                <span
+                                                                    className="relative mt-auto text-center text-xl font-bold text-white">{category.name}</span>
                                                             </a>
                                                         ))}
                                                     </div>
@@ -169,7 +202,8 @@ export default function Home() {
                                         </div>
 
                                         <div className="mt-6 px-4 sm:hidden">
-                                            <a href="#" className="block text-sm font-semibold text-green-500 hover:text-green-600">
+                                            <a href="#"
+                                               className="block text-sm font-semibold text-green-500 hover:text-green-600">
                                                 Chi tiết<span aria-hidden="true"> &rarr;</span>
                                             </a>
                                         </div>
@@ -178,20 +212,22 @@ export default function Home() {
                                 <div className=" py-4">
                                     <div className={`grid grid-cols-2 gap-x-4`}>
                                         {shop?.config?.productGroups.map((x, index) => (
-                                            <div key={x.name} className={`col-span-2 my-2 rounded-xl border bg-white p-5`}>
+                                            <div key={x.name}
+                                                 className={`col-span-2 my-2 rounded-xl border bg-white p-5`}>
                                                 <div className={`flex justify-between mb-4 `}>
                                                     <h3 className={`font-semibold`}>{x.name}</h3>
-                                                    <a href="#" className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">
+                                                    <a href="#"
+                                                       className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">
                                                         Xem thêm<span aria-hidden="true"> &rarr;</span>
                                                     </a>
                                                 </div>
-                                                    <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2`}>
-                                                        {x?.products.slice(0, 6).map((x, index) => (
-                                                            <div key={index} className={`col-span-1`}>
-                                                                <ProductCard product={x}></ProductCard>
-                                                            </div>
-                                                        ))}
-                                                    </div>
+                                                <div className={`grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2`}>
+                                                    {x?.products.slice(0, 6).map((x, index) => (
+                                                        <div key={index} className={`col-span-1`}>
+                                                            <ProductCard product={x}></ProductCard>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

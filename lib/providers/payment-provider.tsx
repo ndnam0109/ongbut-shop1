@@ -7,11 +7,11 @@ import { useMemoCompare } from "@/lib/hooks/useMemoCompare";
 import { CartProduct, useCart} from "@/lib/providers/cart-provider";
 import { useLocation} from "@/lib/providers/location-provider";
 import { useShopContext} from "@/lib/providers/shop-provider";
-import { useToast } from "../../../../lib/providers/toast-provider";
 import { Order, OrderInput, OrderService} from "@/lib/repo/order.repo";
 import { Product, ProductService} from "@/lib/repo/product.repo";
 import { ShopVoucher, ShopVoucherService} from "@/lib/repo/shop-voucher.repo";
 import { PaymentSuccessDialog} from "@/components/payment/payment-success-dialog";
+import {toast} from "react-toastify";
 
 export type DiscountCartItem = { selected: boolean } & CartProduct;
 export const PaymentContext = createContext<
@@ -88,7 +88,6 @@ export function PaymentProvider(props) {
     customerVoucherId: "",
     offerGroupIndex: 0,
   });
-  const toast = useToast();
 
   const isDiscountItems = useMemo(
     () =>
@@ -598,7 +597,7 @@ export function PaymentProvider(props) {
       }}
     >
       {props.children}
-      <PaymentSuccessDialog isOpen={order ? true : false} order={order} />
+      {/*<PaymentSuccessDialog isOpen={order ? true : false} order={order} />*/}
     </PaymentContext.Provider>
   );
 }

@@ -1,15 +1,15 @@
-import { useRouter } from "next/router";
+import { useSearchParams } from 'next/navigation';
 import { useMemo } from "react";
 
 export function useQuery(field: string) {
-  const router = useRouter();
+  const searchParams = useSearchParams();
   const id = useMemo(() => {
-    if (router.query[field]) {
-      return router.query[field] as string;
+    if (searchParams.get(field)) {
+      return searchParams.get(field) as string;
     } else {
       return undefined;
     }
-  }, [router.query]);
+  }, [field]);
 
   return id;
 }
