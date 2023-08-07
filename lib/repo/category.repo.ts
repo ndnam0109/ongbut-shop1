@@ -11,49 +11,43 @@ export interface Category extends BaseModel {
   products: Product[];
 }
 export class CategoryRepository extends CrudRepository<Category> {
-  apiName = "Category";
+  apiName = "SysProductCategory";
   displayName = "danh mục";
   shortFragment: string = this.parseFragment(`
     id: String
     createdAt: DateTime
     updatedAt: DateTime
-    memberId: ID
     name: String
-    code: String
     productIds: [ID]
-    hidden: Boolean
     priority: Int`);
   fullFragment: string = this.parseFragment(`
     id: String
     createdAt: DateTime
     updatedAt: DateTime
-    memberId: ID
     name: String
-    code: String
     productIds: [ID]
     priority: Int
-    hidden: Boolean
   `);
   shortFragmentWithProducts: string = this.parseFragment(`
     id: String
     createdAt: DateTime
     updatedAt: DateTime
-    memberId: ID
+  image: String
     name: String
-    code: String
-    hidden: Boolean
+
+
     priority: Int
   `);
   fullFragmentWithProducts: string = this.parseFragment(`
     id: String
     createdAt: DateTime
     updatedAt: DateTime
-    memberId: ID
+ 
     name: String
-    code: String
+  image: String
     productIds: [ID]
     priority: Int
-    hidden: Boolean
+ 
     products {
       ${ProductService.fullFragment}
     }: [Product]

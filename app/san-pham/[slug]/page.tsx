@@ -186,9 +186,9 @@ export default function Product({params}: { params: { slug: string } }) {
                                 }}
                                    className="bg-red-500 border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-red-600 transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke-width="1.5"
+                                         strokeWidth="1.5"
                                          stroke="currentColor" className="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                        <path strokeLinecap="round" strokeLinejoin="round"
                                               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
                                     </svg>
                                     Chọn mua
@@ -196,9 +196,9 @@ export default function Product({params}: { params: { slug: string } }) {
                                 <a href="#"
                                    className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke-width="1.5"
+                                         strokeWidth="1.5"
                                          stroke="currentColor" className="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                        <path strokeLinecap="round" strokeLinejoin="round"
                                               d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
                                     </svg>
                                     Yêu thích
@@ -210,8 +210,8 @@ export default function Product({params}: { params: { slug: string } }) {
                                    className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          className="icon icon-tabler icon-tabler-brand-facebook" width="24" height="24"
-                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                         stroke-linecap="round" stroke-linejoin="round">
+                                         viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none"
+                                         strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path
                                             d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
@@ -221,8 +221,8 @@ export default function Product({params}: { params: { slug: string } }) {
                                    className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          className="icon icon-tabler icon-tabler-brand-youtube" width="24" height="24"
-                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                         stroke-linecap="round" stroke-linejoin="round">
+                                         viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none"
+                                         strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path
                                             d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
@@ -233,8 +233,8 @@ export default function Product({params}: { params: { slug: string } }) {
                                    className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          className="icon icon-tabler icon-tabler-brand-instagram" width="24" height="24"
-                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                         stroke-linecap="round" stroke-linejoin="round">
+                                         viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none"
+                                         strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path
                                             d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
@@ -253,9 +253,9 @@ export default function Product({params}: { params: { slug: string } }) {
                                     <div className={`flex gap-x-1`}> 4.6 / 5
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                              className="w-4 h-4 text-yellow-300">
-                                            <path fill-rule="evenodd"
+                                            <path fillRule="evenodd"
                                                   d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                                  clip-rule="evenodd"/>
+                                                  clipRule="evenodd"/>
                                         </svg></div>
                                     <div className={`text-[12px] text-gray-400`}>10.9k+</div>
                                 </div>
@@ -285,8 +285,8 @@ export default function Product({params}: { params: { slug: string } }) {
                                     Theo dõi
                                     <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true"
                                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                              strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                     </svg>
                                 </button>
                             </div>

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, {Fragment} from 'react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import ProductCard from "@/components/product/ProductCard";
@@ -14,6 +14,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper'
 import {ShopContext, useShopContext} from "@/lib/providers/shop-provider";
+import {Dialog, Transition} from "@headlessui/react";
+import {Spinner} from "@nextui-org/spinner";
 
 const categoriesConst = [
     {
@@ -56,67 +58,13 @@ export default function Home() {
                                 <div className={`p-4 bg-white rounded-xl border-gray-300`}>
                                     <h4 className={`text-[16px] font-semibold`}>Danh mục</h4>
                                     <ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">
-                                        <Link href={`/danh-muc/kinh`}>
-                                            <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                                <div className={`rounded-xl p-1 bg-white`}>
-                                                    <img className={`w-8 h-8`}
-                                                         src="https://salt.tikicdn.com/cache/100x100/ts/category/ca/53/64/49c6189a0e1c1bf7cb91b01ff6d3fe43.png.webp"
-                                                         alt=""/>
-                                                </div>
-                                                <span>Kính mắt</span>
-                                            </li>
-                                        </Link>
-                                        <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                            <div className={`rounded-xl p-1 bg-white`}>
-                                                <img className={`w-8 h-8`}
-                                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/ed/20/60/afa9b3b474bf7ad70f10dd6443211d5f.png.webp"
-                                                     alt=""/>
-                                            </div>
-                                            <span>Sách vở</span>
-                                        </li>
-                                        <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                            <div className={`rounded-xl p-1 bg-white`}>
-                                                <img className={`w-8 h-8`}
-                                                     src="https://salt.tikicdn.com/cache/100x100/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png.webp"
-                                                     alt=""/>
-                                            </div>
-                                            <span>Máy tính bảng</span>
-                                        </li>
                                         {categories?.map((x, index) => (
                                             <div key={index}>
                                                 <Link href={`/danh-muc/${x.id}`}>
                                                     <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
                                                         <div className={`rounded-xl p-1 bg-white`}>
-                                                            <img className={`w-8 h-8`}
-                                                                 src={categoriesConst[index].imageSrc}
-                                                                 alt=""/>
-                                                        </div>
-                                                        <span>{x.name}</span>
-                                                    </li>
-                                                </Link>
-                                            </div>
-                                        ))}
-                                        {categories?.map((x, index) => (
-                                            <div key={index}>
-                                                <Link href={`/danh-muc/kinh`}>
-                                                    <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                                        <div className={`rounded-xl p-1 bg-white`}>
-                                                            <img className={`w-8 h-8`}
-                                                                 src={categoriesConst[index].imageSrc}
-                                                                 alt=""/>
-                                                        </div>
-                                                        <span>{x.name}</span>
-                                                    </li>
-                                                </Link>
-                                            </div>
-                                        ))}
-                                        {categories?.map((x, index) => (
-                                            <div key={index}>
-                                                <Link href={`/danh-muc/kinh`}>
-                                                    <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                                        <div className={`rounded-xl p-1 bg-white`}>
-                                                            <img className={`w-8 h-8`}
-                                                                 src={categoriesConst[index].imageSrc}
+                                                            <img className={`w-8 h-8 object-contain`}
+                                                                 src={x.image}
                                                                  alt=""/>
                                                         </div>
                                                         <span>{x.name}</span>

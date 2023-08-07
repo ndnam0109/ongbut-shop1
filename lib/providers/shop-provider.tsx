@@ -22,6 +22,7 @@ import { ShopTable, ShopTableService } from "../repo/shop/shop-table.repo";
 
 import {toast} from "react-toastify";
 import {usePathname, useRouter} from "next/navigation";
+import {CustomerLoginDialog} from "@/components/auth/CustomerLoginDialog";
 
 export const CUSTOMER_LOGIN_PATHNAME = "customer-login-pathname";
 export const ShopContext = createContext<
@@ -155,6 +156,7 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
                 if (userPhone && customerName && !shop.config.smsOtp) {
                     const customerData = await CustomerService.loginCustomerByPhone(userPhone, customerName);
                     if (customerData) {
+                        console.log(customerData)
                         SetCustomerToken(customerData.token, code);
                         setCustomer(customerData.customer);
                     } else {
@@ -228,30 +230,6 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
             } else {
                 setCustomer(null);
                 return false;
-            }
-        } else {
-            setCustomer(null);
-            return false;
-        }
-    }
-
-    async function loginCustomerOTP(phone: string, name: string, otp: string) {
-        if (phone && otp) {
-            localStorage.setItem("customerName", name);
-            const pathname = location.pathname;
-            if (pathname !== "/shop" && !pathname.startsWith("/shop/")) {
-                const customerData = await CustomerService.loginCustomerByPhone(phone, name, otp);
-                if (customerData) {
-                    SetCustomerToken(customerData.token, code);
-                    setCustomer(cloneDeep(customerData.customer));
-                    toast.success("Đăng nhập thành công!");
-                    // closeLogin();
-                    localStorage.setItem("userPhone", customerData.customer.phone);
-                    return true;
-                } else {
-                    setCustomer(null);
-                    return false;
-                }
             }
         } else {
             setCustomer(null);
@@ -387,7 +365,6 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
                 shopTable,
                 setCustomer,
                 loginCustomer,
-                loginCustomerOTP,
                 logoutCustomer,
                 shopBranches,
                 selectedBranch,
@@ -402,6 +379,9 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
             }}
         >
             {props.children}
+            {openLoginDialog && (
+                <CustomerLoginDialog isOpen={openLoginDialog} onClose={() => setOpenLoginDialog(false)} />
+            )}
         </ShopContext.Provider>
     );
 }

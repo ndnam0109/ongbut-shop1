@@ -11,6 +11,8 @@ import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {CardProductItem} from "@/components/cart/ProductInCart";
 import {useShopContext} from "@/lib/providers/shop-provider";
+import React from "react";
+import {Badge} from "@nextui-org/react";
 
 
 export default function CartModal() {
@@ -21,6 +23,7 @@ export default function CartModal() {
         totalQty,
         clearCartProducts,
     } = useCart();
+    const [isInvisible, setIsInvisible] = React.useState(false);
     console.log(totalAmount)
     console.log(cartProducts)
     console.log(totalQty)
@@ -31,10 +34,14 @@ export default function CartModal() {
     const closeCart = () => setIsOpen(false);
     const router = useRouter()
 
-    const handlePayment = () => {
+    const checkRedirectToPayment = () => {
+        console.log(customer)
+        console.log('payyyyyyyyyyyy')
       if (customer){
+          setIsOpen(false)
           router.push(`/thanh-toan`)
       } else {
+          console.log('open  modal')
           setOpenLoginDialog(true)
       }
     }
@@ -45,11 +52,11 @@ export default function CartModal() {
                 <div
                     className="relative flex h-11 w-11 items-center justify-center rounded-md text-white transition-colors ">
                     <ShoppingCartIcon
-                        className={'h-8 transition-all ease-in-out hover:scale-110 '}
+                        className={'h-6 transition-all ease-in-out hover:scale-110 '}
                     />
                     {cartProducts?.length != 0 && (
                         <div
-                            className="absolute right-0 top-1 -mr-1 -mt-2 h-4 w-4 rounded bg-white text-[12px] font-medium text-green-500">
+                            className="absolute right-1 top-1  h-4 w-4 rounded bg-white text-[12px] font-medium text-green-500">
                             {cartProducts?.length}
                         </div>
                     )}
@@ -128,7 +135,7 @@ export default function CartModal() {
                                     {/*        />*/}
                                     {/*    </div>*/}
                                     {/*</div>*/}
-                                        <button onClick={() => setIsOpen(false)}
+                                        <button onClick={checkRedirectToPayment}
                                             className="block w-full rounded bg-green-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                                         >
                                             Thanh toán -   {parseNumber(totalAmount, true)}

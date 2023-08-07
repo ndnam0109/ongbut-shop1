@@ -141,7 +141,6 @@ export class CustomerRepository extends CrudRepository<Customer> {
     provinceId: String
     districtId: String
     wardId: String
-    commission: Float
     fullAddress: String
     addressNote: String;
     rewardPointStats{
@@ -166,19 +165,6 @@ export class CustomerRepository extends CrudRepository<Customer> {
       completed: Int
       canceled: Int
     }: CustomerOrderStats
-    commissionSummary{
-      commission: Float
-      order: Int
-    }:CustomerCommissionSummary
-    momoWallet {
-      status: String
-      statusMsg: String
-      phone: String
-      idCard: String
-      name: String
-      submitAt: DateTime
-      updateAt: DateTime
-    }: CustomerMomoWallet
     threadId: ID
     thread {
       id

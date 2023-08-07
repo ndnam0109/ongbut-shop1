@@ -7,8 +7,9 @@ import Header from "@/components/layout/Header";
 import {CartProvider} from "@/lib/providers/cart-provider";
 import Footer from "@/components/layout/Footer";
 import BottomNavigationMobile from "@/components/layout/BottomNavigationMobile";
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Providers} from "@/app/providers";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -25,29 +26,32 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <AuthProvider>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-            <ShopProvider code={'OngButShop'}>
-                <CartProvider>
-                    <Header/>
-                    {children}
-                    <Footer />
-                    <BottomNavigationMobile />
-                </CartProvider>
-            </ShopProvider>
-            <ToastContainer />
-        </AuthProvider></body>
+        <Providers>
+            <AuthProvider>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+                <ShopProvider code={'OngButShop'}>
+                    <CartProvider>
+                        <Header/>
+                        {children}
+                        <Footer/>
+                        <BottomNavigationMobile/>
+                    </CartProvider>
+                </ShopProvider>
+                <ToastContainer/>
+            </AuthProvider>
+        </Providers>
+        </body>
         </html>
     )
 }

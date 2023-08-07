@@ -73,7 +73,7 @@ export function getCurrentToken() {
     const anonymousToken = GetAnonymousToken(shopCode as string);
     token = customerToken || anonymousToken;
   }
-  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQU5PTllNT1VTIiwiX2lkIjoiNjRiNjM5OGFlNjM1YjEyNDA2YjM4NzdlIiwibWVtYmVySWQiOiI2NDc4NjFiYmQ5OWUxNzdlM2I3OGI3N2UiLCJ1c2VybmFtZSI6Iktow6FjaCB2w6NuZyBsYWkiLCJpYXQiOjE2ODk2NjM4ODIsImV4cCI6MTY5MjI1NTg4Mn0.sGBdmTzqkun7CMaxak0Hf1QjdFPhwDsUEZ4TZpE3NSQ"
+  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJfaWQiOiI2NDc4NmYxYjM3ZGI3NzUzYTNmODRlOTgiLCJtZW1iZXJJZCI6IjY0Nzg2MWJiZDk5ZTE3N2UzYjc4Yjc3ZSIsInVzZXJuYW1lIjoiVHVuZyIsImlhdCI6MTY5MTA2MDIyNywiZXhwIjoxNzIyNTk2MjI3fQ.h7ffy_gMzctY22keEwoLFvPYGUXaU7OaazxmMgHxD2E"
   return token;
 }
 

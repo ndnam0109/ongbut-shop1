@@ -6,7 +6,9 @@ import {ProductQuantity} from "@/components/product/ProductQuantity";
 import {useCart} from "@/lib/providers/cart-provider";
 import {parseNumber} from "@/lib/helpers/parser";
 import CustomDropdown from "@/lib/form/CustomDropdown";
-import {PaymentDeliveryInfo} from "@/components/payment/payment-delivery-info";
+import PaymentDeliveryInfo from "@/components/payment/payment-delivery-info";
+import {Input} from "@nextui-org/input";
+import {Checkbox} from "@nextui-org/react";
 
 const deliveryMethods = [
     { id: 1, title: 'COD',image:'https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/ship-cod-la-gi-0.jpg', turnaround: '4–10 business days', price: '$5.00' },
@@ -39,38 +41,30 @@ export default function Example() {
                 <h2 className="sr-only">Checkout</h2>
                 <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
                     <div>
-                        <div className=" border-gray-200 ">
+                        <div className=" border-gray-200">
                             <h2 className="text-lg font-medium text-gray-900">Thông tin đơn hàng</h2>
 
-                            <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                            <div className="mt-4 grid grid-cols-1 bg-white p-4 rounded gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                                 <div>
-                                    <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                                        Họ
-                                    </label>
-                                    <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            id="first-name"
-                                            name="first-name"
-                                            autoComplete="given-name"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
+                                    <Input
+                                        isRequired
+                                        type="email"
+                                        label="Họ"
+                                        defaultValue=""
+                                        labelPlacement={"outside"}
+                                        placeholder={'Họ'}
+                                    />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                                        Tên
-                                    </label>
-                                    <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            id="last-name"
-                                            name="last-name"
-                                            autoComplete="family-name"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
+                                    <Input
+                                        isRequired
+                                        type="email"
+                                        label="Tên"
+                                        defaultValue=""
+                                        labelPlacement={"outside"}
+                                        placeholder={'Tên'}
+                                    />
                                 </div>
                                 <div>
                                     <label htmlFor="city" className="block text-sm font-medium text-gray-700">
@@ -98,18 +92,15 @@ export default function Example() {
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                                        Số điện thoại
-                                    </label>
-                                    <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            name="phone"
-                                            id="phone"
-                                            autoComplete="phone"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
+                                    <Input
+                                        isRequired
+                                        disabled={true}
+                                        readOnly={true}
+                                        value={'0372365521'}
+                                        type="phone"
+                                        label="so dt"
+                                        labelPlacement={"outside"}
+                                    />
                                 </div>
                                 <div className="sm:col-span-2">
                                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">
@@ -126,17 +117,7 @@ export default function Example() {
                                     </div>
                                 </div>
                                 <div className="sm:col-span-2 flex gap-x-2 items-center">
-                                    <div className="mt-1">
-                                        <input
-                                            type="checkbox"
-                                            name="remember"
-                                            id="remember"
-                                            autoComplete="street-address"
-                                        />
-                                    </div>
-                                    <label htmlFor="remember" className="block text-sm font-medium text-gray-700">
-                                        Lưu thông tin cho lần tiếp theo
-                                    </label>
+                                    <Checkbox defaultSelected>Lưu thông tin cho lần tiếp theo</Checkbox>
                                 </div>
                             </div>
                         </div>

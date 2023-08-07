@@ -4,8 +4,17 @@ import React from "react";
 import CartModal from "@/components/cart";
 import {useCart} from "@/lib/providers/cart-provider";
 import {HomeIcon, UserIcon} from "@heroicons/react/20/solid";
+import {Input} from "@nextui-org/input";
+import {Kbd} from "@nextui-org/kbd";
+import {SearchIcon} from "@nextui-org/shared-icons";
+import {Button, Tooltip} from "@nextui-org/react";
+import {Avatar} from "@nextui-org/avatar";
+import {useShopContext} from "@/lib/providers/shop-provider";
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User} from "@nextui-org/react";
 
-export default function Header(){
+export default function Header() {
+    const { shop, customer, logoutCustomer, shopCode, setOpenLoginDialog } = useShopContext();
+    console.log(customer)
     return (
         <nav className=" bg-green-500">
             <div className="container flex">
@@ -16,33 +25,64 @@ export default function Header(){
                     <form className={`w-2/3 md:w-1/2 grow lg:grow-0`}>
                         <div className="flex">
                             <div className="relative w-full">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                    </svg>
-                                </div>
-                                <input type="search"
-                                       className="block p-2.5 pl-10 w-full z-20 text-sm text-gray-900 bg-gray-50 focus:outline-none rounded-lg border-l-gray-100 border-l-2 border border-gray-300 "
-                                       placeholder="Taka - Tha hồ mua sắm" />
-                                    <button type="submit"
-                                            className="absolute top-0 right-0 p-2.5 h-full text-sm font-medium text-gray-500 border-l border-l-gray-300 hover:text-green-600 rounded-r-lg  hover:bg-green-200  focus:outline-none ">
-                                        Tìm kiếm
-                                    </button>
+                                <Input
+                                    aria-label="Search"
+                                    classNames={{
+                                        inputWrapper: "bg-default-100 ",
+                                        input: "text-sm focus:outline-none",
+                                    }}
+                                    endContent={
+                                        <Button size="sm">
+                                            Tìm kiếm
+                                        </Button>
+                                    }
+                                    radius={"sm"}
+                                    labelPlacement="outside"
+                                    placeholder="Taka - Tha hồ mua sắm"
+                                    startContent={
+                                        <SearchIcon
+                                            className="text-base text-default-400 pointer-events-none flex-shrink-0"/>
+                                    }
+                                    type="search"
+                                />
                             </div>
                         </div>
                     </form>
                     <div className="flex items-center space-x-4 text-white">
                         <div className={`hidden lg:flex  items-center gap-x-1`}>
-                            <HomeIcon className={`w-5 h-5`} />
-                            Trang chủ
+                            <Tooltip content="Trang chủ">
+                                <HomeIcon className={`w-6 h-6 cursor-pointer`}/>
+                            </Tooltip>
                         </div>
+                        <CartModal/>
                         <div className={`hidden lg:flex  items-center gap-x-1`}>
-                            <UserIcon className={`w-5 h-5`} />
-                            Tài khoản
+                            {customer && (
+                                <Dropdown placement="bottom-end">
+                                    <DropdownTrigger>
+                                        <Avatar
+                                            isBordered
+                                            as="button"
+                                            className="transition-transform"
+                                            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                        />
+                                    </DropdownTrigger>
+                                    <DropdownMenu aria-label="Profile Actions" variant="flat">
+                                        <DropdownItem key="profile" className="h-14 gap-2">
+                                            <p className="font-semibold">{customer?.name}</p>
+                                            <p className="font-semibold">{customer?.phone}</p>
+                                        </DropdownItem>
+                                        <DropdownItem key="settings">
+                                            Thông tin tài khoản
+                                        </DropdownItem>
+                                        <DropdownItem key="team_settings">Lịch sử đặt hàng</DropdownItem>
+                                        <DropdownItem key="logout" color="danger">
+                                            Log Out
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            )}
                         </div>
-                        <CartModal />
+
                     </div>
                 </div>
             </div>

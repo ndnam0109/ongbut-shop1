@@ -22,7 +22,7 @@ function createApolloClient() {
           );
         },
         WSLink as any,
-        new HttpLink({ uri: `https://fnb.myitsol.com/graphql` }) as any
+        new HttpLink({ uri: `https://taka-admin.myitsol.com/graphql` }) as any
       ),
     ]) as any,
     cache: new InMemoryCache(),
