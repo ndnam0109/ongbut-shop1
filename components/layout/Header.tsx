@@ -13,7 +13,7 @@ import {useShopContext} from "@/lib/providers/shop-provider";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User} from "@nextui-org/react";
 
 export default function Header() {
-    const { shop, customer, logoutCustomer, shopCode, setOpenLoginDialog } = useShopContext();
+    const {shop, customer, logoutCustomer, shopCode, setOpenLoginDialog} = useShopContext();
     console.log(customer)
     return (
         <nav className=" bg-green-500">
@@ -54,9 +54,9 @@ export default function Header() {
                                 <HomeIcon className={`w-6 h-6 cursor-pointer`}/>
                             </Tooltip>
                         </div>
-                        <CartModal/>
+                            <CartModal/>
                         <div className={`hidden lg:flex  items-center gap-x-1`}>
-                            {customer && (
+                            {customer ? (
                                 <Dropdown placement="bottom-end">
                                     <DropdownTrigger>
                                         <Avatar
@@ -76,10 +76,14 @@ export default function Header() {
                                         </DropdownItem>
                                         <DropdownItem key="team_settings">Lịch sử đặt hàng</DropdownItem>
                                         <DropdownItem key="logout" color="danger">
-                                            Log Out
+                                            Đăng xuất
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
+                            ) : (
+                                <Button color="primary">
+                                    Đăng nhập
+                                </Button>
                             )}
                         </div>
 

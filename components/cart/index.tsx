@@ -12,7 +12,7 @@ import Link from "next/link";
 import {CardProductItem} from "@/components/cart/ProductInCart";
 import {useShopContext} from "@/lib/providers/shop-provider";
 import React from "react";
-import {Badge} from "@nextui-org/react";
+import { Tooltip} from "@nextui-org/react";
 
 
 export default function CartModal() {
@@ -37,31 +37,33 @@ export default function CartModal() {
     const checkRedirectToPayment = () => {
         console.log(customer)
         console.log('payyyyyyyyyyyy')
-      if (customer){
-          setIsOpen(false)
-          router.push(`/thanh-toan`)
-      } else {
-          console.log('open  modal')
-          setOpenLoginDialog(true)
-      }
+        if (customer) {
+            setIsOpen(false)
+            router.push(`/thanh-toan`)
+        } else {
+            console.log('open  modal')
+            setOpenLoginDialog(true)
+        }
     }
 
     return (
         <>
-            <button aria-label="Open cart" onClick={openCart}>
-                <div
-                    className="relative flex h-11 w-11 items-center justify-center rounded-md text-white transition-colors ">
-                    <ShoppingCartIcon
-                        className={'h-6 transition-all ease-in-out hover:scale-110 '}
-                    />
-                    {cartProducts?.length != 0 && (
-                        <div
-                            className="absolute right-1 top-1  h-4 w-4 rounded bg-white text-[12px] font-medium text-green-500">
-                            {cartProducts?.length}
-                        </div>
-                    )}
-                </div>
-            </button>
+            <Tooltip content="Giỏ hàng">
+                <button aria-label="Open cart" onClick={openCart}>
+                    <div
+                        className="relative flex h-11 w-11 items-center justify-center rounded-md text-white transition-colors ">
+                        <ShoppingCartIcon
+                            className={'h-6 transition-all ease-in-out hover:scale-110 '}
+                        />
+                        {cartProducts?.length != 0 && (
+                            <div
+                                className="absolute right-1 top-1  h-4 w-4 rounded bg-white text-[12px] font-medium text-green-500">
+                                {cartProducts?.length}
+                            </div>
+                        )}
+                    </div>
+                </button>
+            </Tooltip>
             <Transition show={isOpen}>
                 <Dialog onClose={closeCart} className="relative z-50">
                     <Transition.Child
@@ -135,11 +137,11 @@ export default function CartModal() {
                                     {/*        />*/}
                                     {/*    </div>*/}
                                     {/*</div>*/}
-                                        <button onClick={checkRedirectToPayment}
+                                    <button onClick={checkRedirectToPayment}
                                             className="block w-full rounded bg-green-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-                                        >
-                                            Thanh toán -   {parseNumber(totalAmount, true)}
-                                        </button>
+                                    >
+                                        Thanh toán - {parseNumber(totalAmount, true)}
+                                    </button>
                                 </div>
                             )}
                         </Dialog.Panel>

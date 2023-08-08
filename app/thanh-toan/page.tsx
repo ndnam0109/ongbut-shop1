@@ -7,8 +7,10 @@ import {useCart} from "@/lib/providers/cart-provider";
 import {parseNumber} from "@/lib/helpers/parser";
 import CustomDropdown from "@/lib/form/CustomDropdown";
 import PaymentDeliveryInfo from "@/components/payment/payment-delivery-info";
-import {Input} from "@nextui-org/input";
+import {Input, Textarea} from "@nextui-org/input";
 import {Checkbox} from "@nextui-org/react";
+import {useShopContext} from "@/lib/providers/shop-provider";
+import {useLocation} from "@/lib/providers/location-provider";
 
 const deliveryMethods = [
     { id: 1, title: 'COD',image:'https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/ship-cod-la-gi-0.jpg', turnaround: '4–10 business days', price: '$5.00' },
@@ -34,6 +36,8 @@ export default function Example() {
         totalQty,
         clearCartProducts,
     } = useCart();
+    const { shop, customer, logoutCustomer, shopCode, setOpenLoginDialog } = useShopContext();
+    const { openLocation, userLocation } = useLocation();
 
     return (
         <div className="bg-gray-50">
@@ -48,73 +52,61 @@ export default function Example() {
                                 <div>
                                     <Input
                                         isRequired
+                                        isReadOnly
                                         type="email"
-                                        label="Họ"
-                                        defaultValue=""
+                                        label="Họ tên"
+                                        defaultValue={customer?.name}
                                         labelPlacement={"outside"}
-                                        placeholder={'Họ'}
+                                        placeholder={'Họ tên'}
                                     />
                                 </div>
+                                {/*<div>*/}
+                                {/*    <label htmlFor="city" className="block text-sm font-medium text-gray-700">*/}
+                                {/*        Tỉnh/Thành phố*/}
+                                {/*    </label>*/}
+                                {/*    <div className="mt-1">*/}
+                                {/*       <CustomDropdown />*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+                                {/*<div>*/}
+                                {/*    <label htmlFor="region" className="block text-sm font-medium text-gray-700">*/}
+                                {/*        Quận/Huyện*/}
+                                {/*    </label>*/}
+                                {/*    <div className="mt-1">*/}
+                                {/*        <CustomDropdown />*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
 
+                                {/*<div>*/}
+                                {/*    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">*/}
+                                {/*        Xã/Phường*/}
+                                {/*    </label>*/}
+                                {/*    <div className="mt-1">*/}
+                                {/*        <CustomDropdown />*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                                 <div>
                                     <Input
                                         isRequired
-                                        type="email"
-                                        label="Tên"
-                                        defaultValue=""
+                                        isReadOnly
+                                        type="text"
+                                        label="Số điện thoai"
+                                        defaultValue={customer?.phone}
                                         labelPlacement={"outside"}
-                                        placeholder={'Tên'}
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                        Tỉnh/Thành phố
-                                    </label>
-                                    <div className="mt-1">
-                                       <CustomDropdown list={[]}/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                                        Quận/Huyện
-                                    </label>
-                                    <div className="mt-1">
-                                        <CustomDropdown list={[]}/>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                                        Xã/Phường
-                                    </label>
-                                    <div className="mt-1">
-                                        <CustomDropdown list={[]}/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Input
-                                        isRequired
-                                        disabled={true}
-                                        readOnly={true}
-                                        value={'0372365521'}
-                                        type="phone"
-                                        label="so dt"
-                                        labelPlacement={"outside"}
+                                        placeholder={'Số điện thoại'}
                                     />
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                                        Địa chỉ
-                                    </label>
-                                    <div className="mt-1">
-                                        <input
-                                            type="text"
-                                            name="address"
-                                            id="address"
-                                            autoComplete="street-address"
-                                            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
+                                    <Textarea
+                                        label="Địa chỉ"
+                                        onClick={() => {
+                                            console.log(' mo popup location')
+                                            openLocation()
+                                        }
+                                        }
+                                        labelPlacement="outside"
+                                        placeholder="Địa chỉ chi tiết : Số nhà, ghi chú thêm ..."
+                                    />
                                 </div>
                                 <div className="sm:col-span-2 flex gap-x-2 items-center">
                                     <Checkbox defaultSelected>Lưu thông tin cho lần tiếp theo</Checkbox>
@@ -124,8 +116,7 @@ export default function Example() {
 
                         <div className="mt-10 border-t border-gray-200 pt-10">
                             <RadioGroup value={selectedDeliveryMethod} onChange={setSelectedDeliveryMethod}>
-                                <RadioGroup.Label className="text-lg font-medium text-gray-900">Hình thức thanh toán</RadioGroup.Label>
-
+                                <RadioGroup.Label className="text-lg font-medium text-gray-900">Hình thức thanh toán - Nhận hàng</RadioGroup.Label>
                                 <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                                     {deliveryMethods.map((deliveryMethod) => (
                                         <RadioGroup.Option
@@ -221,9 +212,6 @@ export default function Example() {
                                     </li>
                                 ))}
                             </ul>
-                            <dl className="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
-                            <PaymentDeliveryInfo ></PaymentDeliveryInfo>
-                            </dl>
                             <dl className="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                                 <div className="flex items-center justify-between">
                                     <dt className="text-sm">Tạm tính</dt>

@@ -1,8 +1,9 @@
+'use client'
 import { createContext, useContext, useEffect, useState } from "react";
 import Geocode from "react-geocode";
-import { AddressGoogleDialog } from "../../components/shared/location/address-google-dialog";
+import { AddressGoogleDialog} from "@/components/location/address-google-dialog";
 import { GOOGLE_MAPS_API_KEY } from "../constants/google.const";
-import { useToast } from "./toast-provider";
+import {toast} from "react-toastify";
 
 interface UserLocation {
   fullAddress: string;
@@ -27,9 +28,9 @@ export function LocationProvider({
   const [userLocation, setUserLocation] = useState<UserLocation>();
   const [openLocationDialog, setOpenLocationDialog] = useState(false);
   const [isRequired, setIsRequired] = useState(false);
-  const toast = useToast();
 
   const openLocation = (required: boolean) => {
+    console.log('trigger')
     if (required) {
       setIsRequired(true);
     }
@@ -103,28 +104,30 @@ export function LocationProvider({
       }}
     >
       {props.children}
-      <AddressGoogleDialog
-        isOpen={openLocationDialog}
-        fullAddress={userLocation?.fullAddress}
-        onClose={() => {
-          if (isRequired && !userLocation) {
-            toast.info("Cần chọn địa chỉ giao hàng gần nhất");
-          } else {
-            setOpenLocationDialog(false);
-          }
-        }}
-        onChange={(data) => {
-          if (data.fullAddress) {
-            setUserLocation({
-              fullAddress: data.fullAddress,
-              lat: data.lat,
-              lng: data.lng,
-            });
-            setOpenLocationDialog(false);
-            setIsRequired(false);
-          }
-        }}
-      />
+      { openLocationDialog && (
+          <AddressGoogleDialog
+              isOpen={openLocationDialog}
+              fullAddress={userLocation?.fullAddress}
+              onClose={() => {
+                if (isRequired && !userLocation) {
+                  toast.info("Cần chọn địa chỉ giao hàng gần nhất");
+                } else {
+                  setOpenLocationDialog(false);
+                }
+              }}
+              onChange={(data) => {
+                if (data.fullAddress) {
+                  setUserLocation({
+                    fullAddress: data.fullAddress,
+                    lat: data.lat,
+                    lng: data.lng,
+                  });
+                  setOpenLocationDialog(false);
+                  setIsRequired(false);
+                }
+              }}
+          />
+      )}
     </LocationContext.Provider>
   );
 }
