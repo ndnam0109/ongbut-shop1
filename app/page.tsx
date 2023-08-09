@@ -16,6 +16,8 @@ import {Navigation, Pagination, Scrollbar, A11y} from 'swiper'
 import {ShopContext, useShopContext} from "@/lib/providers/shop-provider";
 import {Dialog, Transition} from "@headlessui/react";
 import {Spinner} from "@nextui-org/spinner";
+import {Popover, PopoverTrigger, PopoverContent, Button, Input} from "@nextui-org/react";
+import {CategoryList} from "@/components/category/category-list";
 
 const categoriesConst = [
     {
@@ -57,22 +59,64 @@ export default function Home() {
                             <div className={`hidden lg:block w-1/6 shrink-0`}>
                                 <div className={`p-4 bg-white rounded-xl border-gray-300`}>
                                     <h4 className={`text-[16px] font-semibold`}>Danh mục</h4>
-                                    <ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">
-                                        {categories?.map((x, index) => (
-                                            <div key={index}>
-                                                <Link href={`/danh-muc/${x.id}`}>
-                                                    <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
-                                                        <div className={`rounded-xl p-1 bg-white`}>
-                                                            <img className={`w-8 h-8 object-contain`}
-                                                                 src={x.image}
-                                                                 alt=""/>
-                                                        </div>
-                                                        <span>{x.name}</span>
-                                                    </li>
-                                                </Link>
-                                            </div>
-                                        ))}
-                                    </ul>
+                                    <CategoryList list={categories}/>
+                                    {/*<ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">*/}
+                                    {/*    {categories?.map((x, index) => (*/}
+                                    {/*        <div key={index}>*/}
+                                    {/*            /!*<Link href={`/danh-muc/${x.id}`}>*!/*/}
+                                    {/*            /!*<li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">*!/*/}
+                                    {/*            /!*    <div className={`rounded-xl p-1 bg-white`}>*!/*/}
+                                    {/*            /!*        <img className={`w-8 h-8 object-contain`}*!/*/}
+                                    {/*            /!*             src={x.image}*!/*/}
+                                    {/*            /!*             alt=""/>*!/*/}
+                                    {/*            /!*    </div>*!/*/}
+                                    {/*            /!*    <span>{x.name}</span>*!/*/}
+                                    {/*            /!*</li>*!/*/}
+
+                                    {/*            /!*{x.categories.length > 0 ? (*!/*/}
+                                    {/*            /!*    <Popover placement="right" showArrow offset={10}>*!/*/}
+                                    {/*            /!*        <PopoverTrigger>*!/*/}
+                                    {/*            /!*            <Button*!/*/}
+                                    {/*            /!*                className="w-full py-1 h-fit px-1 rounded-xl flex gap-x-2 items-center justify-start hover:bg-green-500 hover:text-white"*!/*/}
+                                    {/*            /!*                startContent={<div*!/*/}
+                                    {/*            /!*                    className={`rounded-xl p-1 bg-white`}>*!/*/}
+                                    {/*            /!*                    <img className={`w-8 h-8 object-contain`}*!/*/}
+                                    {/*            /!*                         src={x.image}*!/*/}
+                                    {/*            /!*                         alt=""/>*!/*/}
+                                    {/*            /!*                </div>}*!/*/}
+                                    {/*            /!*            >{x.name}</Button>*!/*/}
+                                    {/*            /!*        </PopoverTrigger>*!/*/}
+                                    {/*            /!*        <PopoverContent className="w-[240px]">*!/*/}
+                                    {/*            /!*            {(titleProps) => (*!/*/}
+                                    {/*            /!*                <div className="px-1 py-2 w-full">*!/*/}
+                                    {/*            /!*                    <div className="mt-2 flex flex-col gap-2 w-full">*!/*/}
+                                    {/*            /!*                        {x.categories.map((cate) => (*!/*/}
+                                    {/*            /!*                            <Input key={cate.name} defaultValue={cate.name} label="Width"*!/*/}
+                                    {/*            /!*                                   size="sm" variant="bordered"/>*!/*/}
+                                    {/*            /!*                        ))}*!/*/}
+                                    {/*            /!*                    </div>*!/*/}
+                                    {/*            /!*                </div>*!/*/}
+                                    {/*            /!*            )}*!/*/}
+                                    {/*            /!*        </PopoverContent>*!/*/}
+                                    {/*            /!*    </Popover>*!/*/}
+                                    {/*            /!*) : (*!/*/}
+                                    {/*            /!*    <div*!/*/}
+                                    {/*            /!*        className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">*!/*/}
+                                    {/*            /!*        <div className={`rounded-xl p-1 bg-white`}>*!/*/}
+                                    {/*            /!*            <img className={`w-8 h-8 object-contain`}*!/*/}
+                                    {/*            /!*                 src={x.image}*!/*/}
+                                    {/*            /!*                 alt=""/>*!/*/}
+                                    {/*            /!*        </div>*!/*/}
+                                    {/*            /!*        <span>{x.name}</span>*!/*/}
+                                    {/*            /!*    </div>*!/*/}
+
+                                    {/*            /!*)}*!/*/}
+                                    {/*           */}
+
+                                    {/*            /!*</Link>*!/*/}
+                                    {/*        </div>*/}
+                                    {/*    ))}*/}
+                                    {/*</ul>*/}
                                 </div>
                             </div>
                             <div>
@@ -110,53 +154,53 @@ export default function Home() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-4 rounded mt-4 bg-white">
-                                    <div className=" xl:max-w-7xl xl:mx-auto ">
-                                        <div className="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between ">
-                                            <h2 className="text-lg font-semibold tracking-tight text-gray-900">Danh mục
-                                                nổi bật</h2>
-                                            <a href="#"
-                                               className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">
-                                                Chi tiết<span aria-hidden="true"> &rarr;</span>
-                                            </a>
-                                        </div>
+                    {/*            <div className="p-4 rounded mt-4 bg-white">*/}
+                    {/*                <div className=" xl:max-w-7xl xl:mx-auto ">*/}
+                    {/*                    <div className="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between ">*/}
+                    {/*                        <h2 className="text-lg font-semibold tracking-tight text-gray-900">Danh mục*/}
+                    {/*                            nổi bật</h2>*/}
+                    {/*                        <a href="#"*/}
+                    {/*                           className="hidden text-sm font-semibold text-green-600 hover:text-green-500 sm:block">*/}
+                    {/*                            Chi tiết<span aria-hidden="true"> &rarr;</span>*/}
+                    {/*                        </a>*/}
+                    {/*                    </div>*/}
 
-                                        <div className="mt-4  flow-root">
-                                            <div className="-my-2">
-                                                <div
-                                                    className="box-content py-2 relative h-40 overflow-x-auto xl:overflow-visible">
-                                                    <div
-                                                        className="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">
-                                                        {categoriesConst.map((category) => (
-                                                            <a
-                                                                key={category.name}
-                                                                href={category.href}
-                                                                className="relative w-56 h-40 rounded-lg p-6 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto"
-                                                            >
-                    <span aria-hidden="true" className="absolute inset-0">
-                      <img src={category.imageSrc} alt="" className="w-full h-full object-center object-contain"/>
-                    </span>
-                                                                <span
-                                                                    aria-hidden="true"
-                                                                    className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                                                                />
-                                                                <span
-                                                                    className="relative mt-auto text-center text-xl font-bold text-white">{category.name}</span>
-                                                            </a>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    {/*                    <div className="mt-4  flow-root">*/}
+                    {/*                        <div className="-my-2">*/}
+                    {/*                            <div*/}
+                    {/*                                className="box-content py-2 relative h-40 overflow-x-auto xl:overflow-visible">*/}
+                    {/*                                <div*/}
+                    {/*                                    className="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">*/}
+                    {/*                                    {categoriesConst.map((category) => (*/}
+                    {/*                                        <a*/}
+                    {/*                                            key={category.name}*/}
+                    {/*                                            href={category.href}*/}
+                    {/*                                            className="relative w-56 h-40 rounded-lg p-6 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto"*/}
+                    {/*                                        >*/}
+                    {/*<span aria-hidden="true" className="absolute inset-0">*/}
+                    {/*  <img src={category.imageSrc} alt="" className="w-full h-full object-center object-contain"/>*/}
+                    {/*</span>*/}
+                    {/*                                            <span*/}
+                    {/*                                                aria-hidden="true"*/}
+                    {/*                                                className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"*/}
+                    {/*                                            />*/}
+                    {/*                                            <span*/}
+                    {/*                                                className="relative mt-auto text-center text-xl font-bold text-white">{category.name}</span>*/}
+                    {/*                                        </a>*/}
+                    {/*                                    ))}*/}
+                    {/*                                </div>*/}
+                    {/*                            </div>*/}
+                    {/*                        </div>*/}
+                    {/*                    </div>*/}
 
-                                        <div className="mt-6 px-4 sm:hidden">
-                                            <a href="#"
-                                               className="block text-sm font-semibold text-green-500 hover:text-green-600">
-                                                Chi tiết<span aria-hidden="true"> &rarr;</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                    {/*                    <div className="mt-6 px-4 sm:hidden">*/}
+                    {/*                        <a href="#"*/}
+                    {/*                           className="block text-sm font-semibold text-green-500 hover:text-green-600">*/}
+                    {/*                            Chi tiết<span aria-hidden="true"> &rarr;</span>*/}
+                    {/*                        </a>*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
                                 <div className=" py-4">
                                     <div className={`grid grid-cols-2 gap-x-4`}>
                                         {shop?.config?.productGroups.map((x, index) => (

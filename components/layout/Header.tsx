@@ -63,25 +63,27 @@ export default function Header() {
                                             isBordered
                                             as="button"
                                             className="transition-transform"
-                                            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                            src={customer?.avatar}
                                         />
                                     </DropdownTrigger>
                                     <DropdownMenu aria-label="Profile Actions" variant="flat">
-                                        <DropdownItem key="profile" className="h-14 gap-2">
+                                        <DropdownItem key="profile" className="h-14 gap-2 border-b rounded-b-none">
                                             <p className="font-semibold">{customer?.name}</p>
                                             <p className="font-semibold">{customer?.phone}</p>
                                         </DropdownItem>
                                         <DropdownItem key="settings">
                                             Thông tin tài khoản
                                         </DropdownItem>
-                                        <DropdownItem key="team_settings">Lịch sử đặt hàng</DropdownItem>
-                                        <DropdownItem key="logout" color="danger">
+                                       <Link href={'/order'}>
+                                           <DropdownItem  key="team_settings">Lịch sử đặt hàng</DropdownItem>
+                                       </Link>
+                                        <DropdownItem onClick={() => logoutCustomer()} key="logout" color="danger">
                                             Đăng xuất
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
                             ) : (
-                                <Button color="primary">
+                                <Button className={`bg-white`} onClick={() => setOpenLoginDialog(true)}>
                                     Đăng nhập
                                 </Button>
                             )}

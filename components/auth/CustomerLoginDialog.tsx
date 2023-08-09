@@ -18,23 +18,24 @@ import {Controller, SubmitHandler, useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 
 interface IFormInputs {
-    phone: string
-    name: string
+    username: string
+    password: string
 }
 
 export function CustomerLoginDialog(props) {
-    const {shop, shopCode, loginCustomerOTP, loginCustomer, customer} = useShopContext();
+    const {shop, shopCode, loginCustomerByOb, loginCustomer, customer} = useShopContext();
     const {handleSubmit, control, reset, formState: {errors},} = useForm<IFormInputs>({
         defaultValues: {
-            phone: '',
-            name: ''
+            username: '',
+            password: ''
         },
     })
 
-    const onSubmitForm = async () => {
+    const onSubmitForm = async (data) => {
+        const {username, password} = data
+        console.log(data)
         try {
-
-                await loginCustomer('0347800555', 'Tung');
+            await loginCustomerByOb(username, password);
             props.onClose();
         } catch (error) {
             toast.error("Đăng nhập thất bại. " + error.message);
@@ -58,15 +59,17 @@ export function CustomerLoginDialog(props) {
                 {(onClose) => (
                     <>
                         <ModalHeader className="flex flex-col gap-1">Đăng nhập</ModalHeader>
-                        <ModalBody>
-                            <form onSubmit={handleSubmit(onSubmitForm)}>
+                        <form onSubmit={handleSubmit(onSubmitForm)}>
+                            <ModalBody>
+
                                 <Controller
                                     control={control}
                                     rules={{
                                         required: true,
                                     }}
-                                    render={({field: {onChange, onBlur, value}}) => (
+                                    render={({field}) => (
                                         <Input
+                                            {...field}
                                             autoFocus
                                             classNames={{
                                                 inputWrapper: "bg-default-100  focus:outline-none ",
@@ -76,40 +79,43 @@ export function CustomerLoginDialog(props) {
                                                 <MailIcon
                                                     className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
                                             }
-                                            label="Email"
+                                            label="Tên đăng nhập"
                                             labelPlacement={"outside"}
-                                            placeholder="Enter your email"
+                                            placeholder="Nhập tên"
                                             variant="bordered"
                                         />
                                     )}
-                                    name="name"
+                                    name="username"
                                 />
-                                {errors.name && <p>This is required.</p>}
-                                <Controller
-                                    control={control}
-                                    rules={{
-                                        required: true,
-                                    }}
-                                    render={({field: {onChange, onBlur, value}}) => (
-                                        <Input
-                                            endContent={
-                                                <LockClosedIcon
-                                                    className="w-5 h-4 text-default-400 pointer-events-none flex-shrink-0"/>
-                                            }
-                                            label="Password"
-                                            classNames={{
-                                                inputWrapper: "bg-default-100  focus:outline-none ",
-                                                input: "text-sm focus:outline-none",
-                                            }}
-                                            placeholder="Enter your password"
-                                            type="password"
-                                            variant="bordered"
-                                            labelPlacement={"outside"}
-                                        />
-                                    )}
-                                    name="phone"
-                                />
-                                {errors.phone && <p>This is required.</p>}
+                                {errors.username && <p className={`text-red-500 text-sm`}>Vui lòng nhập tên đăng nhập.</p>}
+                                <div className={`mt-3`}>
+                                    <Controller
+                                        control={control}
+                                        rules={{
+                                            required: true,
+                                        }}
+                                        render={({field}) => (
+                                            <Input
+                                                {...field}
+                                                endContent={
+                                                    <LockClosedIcon
+                                                        className="w-5 h-4 text-default-400 pointer-events-none flex-shrink-0"/>
+                                                }
+                                                label="Mật khẩu"
+                                                classNames={{
+                                                    inputWrapper: "bg-default-100  focus:outline-none ",
+                                                    input: "text-sm mt-2 focus:outline-none",
+                                                }}
+                                                placeholder="Nhập mật khẩu "
+                                                type="password"
+                                                variant="bordered"
+                                                labelPlacement={"outside"}
+                                            />
+                                        )}
+                                        name="password"
+                                    />
+                                </div>
+                                {errors.password && <p className={`text-red-500 text-sm`}>Vui lòng nhập mật khẩu.</p>}
                                 <div className="flex py-2 px-1 justify-between">
                                     <Checkbox
                                         classNames={{
@@ -122,21 +128,16 @@ export function CustomerLoginDialog(props) {
                                         Quên mật khẩu?
                                     </Link>
                                 </div>
-                            </form>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="danger" variant="flat" onClick={onClose}>
-                                Đóng
-                            </Button>
-                            <Button color="primary" onPress={() => {
-                                console.log(111111111)
-                                console.log(errors)
-                               onSubmitForm()
-                            }
-                            }>
-                                Đăng nhập
-                            </Button>
-                        </ModalFooter>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" variant="flat" onClick={onClose}>
+                                    Đóng
+                                </Button>
+                                <Button color="primary" type={"submit"}>
+                                    Đăng nhập
+                                </Button>
+                            </ModalFooter>
+                        </form>
                     </>
                 )}
             </ModalContent>

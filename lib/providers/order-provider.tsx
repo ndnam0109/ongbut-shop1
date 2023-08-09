@@ -1,9 +1,31 @@
-import { createContext, useContext, useEffect, useState } from "react";
+'use client'
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export const OrderContext = createContext<Partial<{}>>({});
+import { useCrud} from "@/lib/hooks/useCrud";
+import { PaginationQueryProps} from "@/lib/hooks/usePaginationQuery";
+import { Order, OrderService} from "@/lib/repo/order.repo";
+
+export const OrderContext = createContext<
+    PaginationQueryProps<Order> & Partial<{ limit: number; setLimit: Function }>
+>({});
 
 export function OrderProvider(props) {
-  return <OrderContext.Provider value={{}}>{props.children}</OrderContext.Provider>;
+  const [limit, setLimit] = useState(10);
+  const context = useCrud(
+      OrderService,
+      {
+        order: { createdAt: -1 },
+        limit,
+      },
+      {
+        cache: false,
+      },
+  );
+  return (
+      <OrderContext.Provider value={{ ...context as any, limit, setLimit }}>
+        {props.children}
+      </OrderContext.Provider>
+  );
 }
 
 export const useOrderContext = () => useContext(OrderContext);

@@ -711,8 +711,11 @@ export class OrderRepository extends CrudRepository<Order> {
   }
 
   subscribeOrder() {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState<Order>();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const subscription = useRef(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       subscription.current = this.subscribe({
         query: `orderStream { ${this.fullFragment} }`

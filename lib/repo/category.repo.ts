@@ -34,7 +34,10 @@ export class CategoryRepository extends CrudRepository<Category> {
     updatedAt: DateTime
   image: String
     name: String
-
+categories {
+        image
+        name
+      }
 
     priority: Int
   `);

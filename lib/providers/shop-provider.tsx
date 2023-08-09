@@ -1,8 +1,8 @@
 'use client'
 import jwt_decode from "jwt-decode";
-import { orderBy } from "lodash";
+import {orderBy} from "lodash";
 import cloneDeep from "lodash/cloneDeep";
-import { createContext, useContext, useEffect, useState } from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {
     ClearAnonymousToken,
     ClearCustomerToken,
@@ -10,15 +10,15 @@ import {
     GetCustomerToken,
     SetCustomerToken,
 } from "../graphql/auth.link";
-import { Customer, CustomerService } from "../repo/customer.repo";
-import { ShopBranch, ShopBranchService } from "../repo/shop-branch.repo";
-import { Shop, ShopService } from "../repo/shop.repo";
+import {Customer, CustomerService} from "../repo/customer.repo";
+import {ShopBranch, ShopBranchService} from "../repo/shop-branch.repo";
+import {Shop, ShopService} from "../repo/shop.repo";
 import Geocode from "react-geocode";
-import { AnalyticConfig } from "../repo/shop-config.repo";
-import { GOOGLE_MAPS_API_KEY } from "../constants/google.const";
-import { NotificationService } from "../repo/notification.repo";
-import { useQuery } from "../hooks/useQuery";
-import { ShopTable, ShopTableService } from "../repo/shop/shop-table.repo";
+import {AnalyticConfig} from "../repo/shop-config.repo";
+import {GOOGLE_MAPS_API_KEY} from "../constants/google.const";
+import {NotificationService} from "../repo/notification.repo";
+import {useQuery} from "../hooks/useQuery";
+import {ShopTable, ShopTableService} from "../repo/shop/shop-table.repo";
 
 import {toast} from "react-toastify";
 import {usePathname, useRouter} from "next/navigation";
@@ -33,6 +33,7 @@ export const ShopContext = createContext<
         shopTable: ShopTable;
         setCustomer: (val: Customer) => any;
         loginCustomer: (phone: string, name: string) => any;
+        loginCustomerByOb: (username: string, password: string) => any;
         loginCustomerOTP: (phone: string, name: string, otp: string) => any;
         logoutCustomer: Function;
         shopBranches: ShopBranch[];
@@ -49,7 +50,7 @@ export const ShopContext = createContext<
     }>
 >({});
 
-export function ShopProvider({ code, ...props }: { code: string } & ReactProps) {
+export function ShopProvider({code, ...props}: { code: string } & ReactProps) {
     const router = useRouter();
     const pathname = usePathname()
     const [shop, setShop] = useState<Shop>();
@@ -237,13 +238,35 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
         }
     }
 
+    async function loginCustomerByOb(username: string, password: string) {
+        console.log(username)
+        console.log(password)
+        debugger
+        if (username) {
+            const pathname = location.pathname;
+            localStorage.setItem("customerName", username);
+            const customerData = await CustomerService.loginCustomerByOb(username, password);
+            if (customerData) {
+                SetCustomerToken(customerData.token, code);
+                setCustomer(cloneDeep(customerData.customer));
+                toast.success("Đăng nhập thành công!");
+                // closeLogin();
+                localStorage.setItem("userPhone", customerData.customer.phone);
+                return true;
+            }
+        } else {
+            setCustomer(null);
+            return false;
+        }
+    }
+
     function logoutCustomer() {
         ClearCustomerToken(code);
         localStorage.removeItem("userPhone");
         localStorage.removeItem("customerName");
         setCustomer(null);
         if (pathname !== "/") {
-            router.push(`/${code}`);
+            router.push(`/`);
         }
     }
 
@@ -365,6 +388,7 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
                 shopTable,
                 setCustomer,
                 loginCustomer,
+                loginCustomerByOb,
                 logoutCustomer,
                 shopBranches,
                 selectedBranch,
@@ -380,7 +404,7 @@ export function ShopProvider({ code, ...props }: { code: string } & ReactProps) 
         >
             {props.children}
             {openLoginDialog && (
-                <CustomerLoginDialog isOpen={openLoginDialog} onClose={() => setOpenLoginDialog(false)} />
+                <CustomerLoginDialog isOpen={openLoginDialog} onClose={() => setOpenLoginDialog(false)}/>
             )}
         </ShopContext.Provider>
     );

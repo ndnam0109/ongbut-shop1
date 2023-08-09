@@ -6,7 +6,7 @@ import { ProductsProvider} from "@/lib/providers/products-provider";
 
 export default function StorePage(){
     return (
-        <ShopProvider>
+        <ShopProvider code={'OngButShop'}>
             <ShopContext.Consumer>
                 {({shop}) => (
                     <div className={`bg-gray-100`}>

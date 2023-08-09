@@ -16,6 +16,7 @@ export function usePaginationQuery<T>(
   fragment?: string,
   cache?: boolean
 ) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [items, setItems] = listState || useState<T[]>();
   const [pagination, setPagination] = useState<Pagination>({
     total: 0,

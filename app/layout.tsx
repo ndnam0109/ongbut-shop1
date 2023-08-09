@@ -11,6 +11,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Providers} from "@/app/providers";
 import {LocationProvider} from "@/lib/providers/location-provider";
+import {PaymentProvider} from "@/lib/providers/payment-provider";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -40,14 +41,16 @@ export default function RootLayout({
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover
-                        theme="light"
+                        theme="colored"
                     />
                     <ShopProvider code={'OngButShop'}>
                         <CartProvider>
-                            <Header/>
-                            {children}
-                            <Footer/>
-                            <BottomNavigationMobile/>
+                            <PaymentProvider>
+                                <Header/>
+                                {children}
+                                <Footer/>
+                                <BottomNavigationMobile/>
+                            </PaymentProvider>
                         </CartProvider>
                     </ShopProvider>
                     <ToastContainer/>

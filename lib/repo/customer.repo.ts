@@ -191,6 +191,22 @@ export class CustomerRepository extends CrudRepository<Customer> {
       }));
   }
 
+  async loginCustomerByOb(username, password): Promise<{ customer: Customer; token: string }> {
+    return await this.apollo
+        .mutate({
+          mutation: this.gql`mutation {  loginByObUser(obUsername: "${username}",obPassword: "${password}" ,memberCode: "OngButShop") {
+          token
+          customer{
+            ${CustomerService.shortFragment}
+          }
+        }}`
+        })
+        .then((res) => ({
+          customer: res.data["loginByObUser"]["customer"] as Customer,
+          token: res.data["loginByObUser"]["token"] as string
+        }));
+  }
+
   async getCustomer() {
     return await this.query({
       query: `customerGetMe { ${this.fullFragment} }`,

@@ -1,5 +1,6 @@
+'use client'
 import cloneDeep from "lodash/cloneDeep";
-import { useRouter } from "next/router";
+import { useRouter} from "next/navigation";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { initProductToppings} from "@/lib/helpers/product";
 import { useDebounce} from "@/lib/hooks/useDebounce";
@@ -75,7 +76,7 @@ export function PaymentProvider(props) {
     buyerName: "",
     buyerPhone: "",
     pickupMethod: "DELIVERY",
-    shopBranchId: "",
+    shopBranchId: "647864c4d99e177e3b78b7ec",
     pickupTime: "",
     buyerFullAddress: "",
     buyerAddressNote: "",
@@ -496,18 +497,6 @@ export function PaymentProvider(props) {
       !order
     ) {
       generateDraftOrder();
-    }
-    if (router.pathname.startsWith("/shop/pos")) {
-      console.log(memoizedInput);
-      if (
-        memoizedInput &&
-        memoizedInput.shopBranchId &&
-        (memoizedInput.pickupMethod === "DELIVERY" || memoizedInput.buyerFullAddress) &&
-        !openVoucherItemsDialog &&
-        !order
-      ) {
-        generateDraftOrder();
-      }
     }
     if (!cartProducts?.length) {
       setSelectedVoucher(null);

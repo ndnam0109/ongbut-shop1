@@ -19,7 +19,7 @@ export interface InputProps {
   className?: string;
 }
 
-export function Input({
+export function CustomInput({
   type = 'text',
   number = false,
   className = '',
@@ -55,14 +55,14 @@ export function Input({
 
   return (
     <div
-      className={`px-0 relative flex items-center border-group group group-hover:border-primary focus-within:border-primary-dark ${
+      className={`px-0 relative flex items-center border-group group group-hover:border-primary  ${
         props.readOnly ? 'readOnly' : ''
       } ${props.error ? 'error' : ''} ${className}`}
     >
       <input
         // tabIndex={props.noFocus && -1}
         ref={ref}
-        className={`bg-transparent self-stretch flex-grow px-3 ${
+        className={` focus:outline-none self-stretch flex-grow px-3 ${
           inputClassName || ''
         }`}
         id={props.id}
@@ -146,4 +146,4 @@ const getDefaultValue = (props: InputProps) => {
   return '';
 };
 
-Input.getDefaultValue = getDefaultValue;
+CustomInput.getDefaultValue = getDefaultValue;

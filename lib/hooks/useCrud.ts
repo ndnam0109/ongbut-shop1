@@ -1,8 +1,8 @@
 import { cloneDeep } from "lodash";
 import { useEffect, useState } from "react";
-import { useToast } from "../providers/toast-provider";
 import { BaseModel, CrudRepository, Pagination, QueryInput } from "../repo/crud.repo";
 import { useMemoCompare } from "./useMemoCompare";
+import {toast} from "react-toastify";
 
 export interface CrudProps<T extends BaseModel> extends ReactProps {
   items?: T[];
@@ -49,7 +49,6 @@ export function useCrud<T>(
     page: query.page || 1,
     limit: query.limit || 10,
   });
-  const toast = useToast();
   const newQuery = useMemoCompare(query);
 
   const loadAll = (refresh = false) => {

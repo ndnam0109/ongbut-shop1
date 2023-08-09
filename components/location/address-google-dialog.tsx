@@ -8,6 +8,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import {NotFound} from "@/components/shared/utilities/misc";
 import {Spinner} from "@nextui-org/spinner";
 import {Input} from "@nextui-org/input";
+import {MapIcon} from "@heroicons/react/20/solid";
 export function AddressGoogleDialog({ onChange, fullAddress = "", ...props }: any) {
   let [addressText, setAddressText] = useState<string>();
   const [place, setPlace] = useState<google.maps.places.AutocompletePrediction>();
@@ -70,13 +71,26 @@ export function AddressGoogleDialog({ onChange, fullAddress = "", ...props }: an
                         height: `${isDesktop ? "auto" : " calc(100vh - 144px)"} `,
                       }}
                   >
-                    <div className="sticky top-0 p-4 bg-gray-100">
+                    <div className="sticky top-0 p-4 ">
                       <Input
                           key={'outside'}
-                          type="email"
-                          label="Bản đồ"
+                          isClearable
+                          color={"primary"}
+                          defaultValue={addressText}
+                          onChange={(val) => {
+                            const value = val.target.value
+                            if (value !== addressText) {
+                              setAddressText(value);
+                              getPlacePredictions({
+                                input: value,
+                                componentRestrictions: { country: "vn" },
+                              });
+                            }
+                          }
+                          }
+                          startContent={<MapIcon className={`h-4 w-4 text-blue-600`} />}
+                          placeholder={'Tìm kiếm địa chỉ giao hàng'}
                           labelPlacement={'outside'}
-                          description={'outside'}
                       />
                     </div>
                     {!addressText ? (
@@ -116,11 +130,11 @@ export function AddressGoogleDialog({ onChange, fullAddress = "", ...props }: an
                   </div>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onClick={onClose}>
-                    Close
+                  <Button color="danger"  onClick={onClose}>
+                   Đóng
                   </Button>
                   <Button color="primary" onPress={onClose}>
-                    Action
+                   Xác nhận
                   </Button>
                 </ModalFooter>
               </>
