@@ -31,7 +31,7 @@ export default function StoreProfile({shop}: any){
     return (
         <div className={`bg-gray-100 pb-5 container`}>
             <div className={`h-[200px] p-4  bg-gray-200`}>
-                <div className={`flex items-center gap-x-10`}>
+                <div className={`flex flex-wrap gap-2 items-center gap-x-10`}>
                     <img className={`w-16 h-16 rounded-full`} src={shop?.shopLogo} alt=""/>
                     <div className={`border-r`}>
                         <h3 className={`font-semibold text-gray-500`}>{shop?.shopName}</h3>
@@ -71,7 +71,7 @@ export default function StoreProfile({shop}: any){
           {/*    <img className={`h-[300px] object-cover w-full rounded`} src={shop?.config.banners[0].image} alt=""/>*/}
           {/*</div>*/}
             <div className={`flex`}>
-                <div className={`p-4 bg-white border-r border-gray-300 shrink-0`}>
+                <div className={`p-4 bg-white hidden lg:block border-r border-gray-300 shrink-0`}>
                     <h4 className={`text-[16px] font-semibold`}>Danh mục sản phẩm</h4>
                     <ul className=" text-sm text-[12px] text-gray-900 bg-white mt-2">
                         {categories?.map((x,index) => (
@@ -93,7 +93,7 @@ export default function StoreProfile({shop}: any){
                         </ul>
                     </div>
                     <div className={`p-4`}>
-                        <div className={`grid grid-cols-6 gap-2`}>
+                        <div className={`grid grid-cols-2 lg:grid-cols-6 gap-2`}>
                             {products.map((x, index) => (
                                 <div key={index}>
                                     <ProductCard product={x}></ProductCard>

@@ -58,7 +58,7 @@ export default function CategoryPage({params}: { params: { slug: string } }) {
         <ProductsProvider>
             <ProductsContext.Consumer>
                 {({loadCategories, filter, onFilterChange, categories}) => (
-                    <div className={`py-4 container flex gap-x-4`}>
+                    <div className={`py-4 container bg-gray-100 flex gap-x-4`}>
                         <div className="w-1/4 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
                             <div className="divide-y divide-gray-200 space-y-5 py-5">
                                 <div>

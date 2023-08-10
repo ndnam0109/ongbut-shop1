@@ -27,7 +27,7 @@ export function CategoryList(props) {
                                                                 alt=""/>} hideIndicator={true} key="1" aria-label="Accordion 1" title={x.name}>
                                 {x.categories.map((child, index) => (
                                        <div key={child.name} >
-                                           <Link href={`/danh-muc/${x.id}`}>
+                                           <Link href={`/danh-muc/${child.id}`}>
                                                <li className="w-full py-1 px-1 rounded-xl flex gap-x-2 items-center hover:bg-green-500 hover:text-white">
                                                    <div className={`rounded-xl p-1 bg-white`}>
                                                        <img className={`w-8 h-8 object-contain`}
