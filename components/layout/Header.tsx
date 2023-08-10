@@ -11,10 +11,12 @@ import {Button, Tooltip} from "@nextui-org/react";
 import {Avatar} from "@nextui-org/avatar";
 import {useShopContext} from "@/lib/providers/shop-provider";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, User} from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
     const {shop, customer, logoutCustomer, shopCode, setOpenLoginDialog} = useShopContext();
     console.log(customer)
+    const router = useRouter()
     return (
         <nav className=" bg-green-500">
             <div className="container flex">
@@ -74,9 +76,7 @@ export default function Header() {
                                         <DropdownItem key="settings">
                                             Thông tin tài khoản
                                         </DropdownItem>
-                                       <Link href={'/order'}>
-                                           <DropdownItem  key="team_settings">Lịch sử đặt hàng</DropdownItem>
-                                       </Link>
+                                           <DropdownItem onClick={() => router.push('/order')} key="team_settings">Lịch sử đặt hàng</DropdownItem>
                                         <DropdownItem onClick={() => logoutCustomer()} key="logout" color="danger">
                                             Đăng xuất
                                         </DropdownItem>

@@ -11,7 +11,6 @@ import { useShopContext} from "@/lib/providers/shop-provider";
 import { Order, OrderInput, OrderService} from "@/lib/repo/order.repo";
 import { Product, ProductService} from "@/lib/repo/product.repo";
 import { ShopVoucher, ShopVoucherService} from "@/lib/repo/shop-voucher.repo";
-import { PaymentSuccessDialog} from "@/components/payment/payment-success-dialog";
 import {toast} from "react-toastify";
 
 export type DiscountCartItem = { selected: boolean } & CartProduct;

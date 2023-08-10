@@ -1,5 +1,5 @@
-import { BaseModel, CrudRepository } from "./crud.repo";
-import { ShopVoucher, ShopVoucherService } from "./shop-voucher.repo";
+import { BaseModel, CrudRepository} from "@/lib/repo/crud.repo";
+import { ShopVoucher, ShopVoucherService} from "@/lib/repo/shop-voucher.repo";
 
 export interface CustomerGroup extends BaseModel {
   memberId: string;

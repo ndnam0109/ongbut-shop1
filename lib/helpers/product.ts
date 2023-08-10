@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { Product } from "../repo/product.repo";
+import { Product} from "@/lib/repo/product.repo";
 
 export const initProductToppings = (product: Product, referenceProduct?: Product) => {
   if (!product) return {} as Product;

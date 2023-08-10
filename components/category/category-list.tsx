@@ -20,7 +20,7 @@ export function CategoryList(props) {
                     {x.categories.length > 0 ? (
                         <Accordion  showDivider={false}
                                     className="p-2 flex flex-col gap-1  text-[12px] text-gray-900  w-full max-w-[300px]"
-                                    variant="shadow"
+                                
                                     itemClasses={itemClasses}>
                             <AccordionItem startContent={  <img className={`w-8 h-8 object-contain`}
                                                                 src={x.image}

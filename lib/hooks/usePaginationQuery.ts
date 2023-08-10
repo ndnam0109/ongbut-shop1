@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CrudRepository, Pagination, QueryInput } from "../repo/crud.repo";
+import { CrudRepository, Pagination, QueryInput} from "@/lib/repo/crud.repo";
 
 export type PaginationQueryProps<T> = {
   items?: T[];
