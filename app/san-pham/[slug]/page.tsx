@@ -57,7 +57,7 @@ export default function Product({params}: { params: { slug: string } }) {
                <ChevronRightIcon className={`w-5 h-5`} />
                 <p className="text-gray-600 font-medium">Product</p>
             </div>
-            <div className="container  grid grid-cols-2 gap-6 bg-white py-4">
+            <div className="container  grid grid-cols-1 md:grid-cols-2 gap-6 bg-white py-4">
                 <div className={`p-5`}>
                     <img
                         src={productInfo?.image}
@@ -72,7 +72,7 @@ export default function Product({params}: { params: { slug: string } }) {
                     </div>
                 </div>
                 <div className={`grid grid-cols-5`}>
-                    <div className={`col-span-3`}>
+                    <div className={`col-span-5 lg:col-span-3`}>
                         <div>
                             <div className={`text-[12px] text-gray-500`}>Thương hiệu: <span
                                 className={`text-green-500`}>ORM</span></div>
@@ -245,7 +245,7 @@ export default function Product({params}: { params: { slug: string } }) {
                             </div>
                         </div>
                     </div>
-                    <div className={`col-span-2`}>
+                    <div className={`col-span-5 lg:col-span-2`}>
                         <div className={`border border-gray-200 rounded p-4`}>
                             <h3 className={`mb-3 font-semibold`}>Ông Bụt Shop</h3>
                             <div className={`grid grid-cols-3 gap-x-2`}>
@@ -280,15 +280,6 @@ export default function Product({params}: { params: { slug: string } }) {
                                         Xem Shop
                                     </button>
                                 </Link>
-                                <button type="button"
-                                        className="text-green-500 w-1/2 border border-green-500 focus:outline-none  font-medium rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center ">
-                                    Theo dõi
-                                    <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true"
-                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                                              strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </button>
                             </div>
                             <div className={`mt-3`}>
                                 <div className={`flex justify-between items-center mb-2`}>
@@ -322,7 +313,7 @@ export default function Product({params}: { params: { slug: string } }) {
             </div>
             <div className="container pb-16 bg-white mb-4">
                 <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Sản phẩm tương tự</h2>
-                <div className="grid grid-cols-6 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
                     {relatedProducts.map((x, index) => (
                         <div key={index}>
                             <ProductCard product={x}></ProductCard>

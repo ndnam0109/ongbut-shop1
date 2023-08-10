@@ -2,10 +2,8 @@
 import Link from "next/link";
 import React from "react";
 import CartModal from "@/components/cart";
-import {useCart} from "@/lib/providers/cart-provider";
 import {HomeIcon, UserIcon} from "@heroicons/react/20/solid";
 import {Input} from "@nextui-org/input";
-import {Kbd} from "@nextui-org/kbd";
 import {SearchIcon} from "@nextui-org/shared-icons";
 import {Button, Tooltip} from "@nextui-org/react";
 import {Avatar} from "@nextui-org/avatar";
@@ -88,7 +86,6 @@ export default function Header() {
                                 </Button>
                             )}
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@ export function CustomerLoginDialog(props) {
             <ModalContent>
                 {(onClose) => (
                     <>
-                        <ModalHeader className="flex flex-col gap-1">Đăng nhập</ModalHeader>
+                        <ModalHeader className="flex flex-col text-gray-500 gap-1">Đăng nhập</ModalHeader>
                         <form onSubmit={handleSubmit(onSubmitForm)}>
                             <ModalBody>
 
